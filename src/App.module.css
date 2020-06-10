@@ -1,0 +1,47 @@
+
+body {
+    color: #fff;
+}
+body::before {
+    content: '';
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: url("./../../github-rep-viewer/src/images/background-portal-github-01.jpg") no-repeat center;
+    background-size: cover;
+
+;
+}
+.app {
+
+}
+.container {
+    margin: 50px auto 0 auto;
+    text-align: center;
+}
+.input__box {
+    text-align: left;
+    width: 100%;
+}
+.input {
+width: 100%;
+    padding: 5px;
+}
+.label {
+    display: block;
+    padding-bottom: 10px;
+}
+.app__header {
+}
+.main {
+    background: rgba(27,27,50,0.8);
+    padding: 30px;
+}
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
