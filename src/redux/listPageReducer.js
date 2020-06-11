@@ -1,17 +1,25 @@
 import {ListAPI} from "../API/api";
 
-const SET_REPS = 'SET_REPS';
+const SET_REPS = 'SET_REPS',
+    SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 
 const initialState = {
-    list: "listOfRepositories",
-    items: []
+    list: null,
+    items: [],
+    currentPage: 1
 };
 const listPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_REPS: {
             return {
                 ...state,
-                items: action.items
+                ...action.items
+            }
+        }
+        case SET_CURRENT_PAGE: {
+            return {
+                ...state,
+                currentPage: action.currentPage
             }
         }
         default:
@@ -26,15 +34,30 @@ export const setReps = (items) => {
         items
     }
 }
+export const setCurrentPage = (currentPage) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage
+    }
+}
+
 
 export default listPageReducer;
 
-export const getRep = () => {
+export const getRep = (page) => {
     return (dispatch) => {
-        debugger
-            ListAPI.getList().then(response => {
-                dispatch(setReps(response.data.items));
+            ListAPI.getList(page).then(response => {
+                dispatch(setReps(response.data));
             })
+
+    }
+}
+export const onPageChange = (page) => {
+    return (dispatch) => {
+        ListAPI.getList(page).then(response => {
+            dispatch(setCurrentPage(page))
+            dispatch(setReps(response.data));
+        })
 
     }
 }
