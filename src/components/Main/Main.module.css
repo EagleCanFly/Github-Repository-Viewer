@@ -1,0 +1,26 @@
+.input__box {
+    text-align: left;
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+    padding: 5px;
+}
+
+.label {
+    display: inline-block;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+.label:hover {
+   text-decoration: underline;
+}
+
+.app__header {
+}
+
+.main {
+    background: rgba(27, 27, 50, 0.8);
+    padding: 30px;
+}

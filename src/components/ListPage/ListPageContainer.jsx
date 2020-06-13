@@ -26,7 +26,6 @@ class ListPageContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    debugger
     return {
         list: state.listPage.items,
         totalCount: state.listPage.total_count,

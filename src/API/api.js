@@ -5,7 +5,7 @@ const instance = axios.create({
 })
 
 export const ListAPI = {
-    getList(page) {
-        return  instance.get(`/search/repositories?q={query}&page=${page}&per_page=10&sort=stars`);
+    getList(page,query = 123) {
+        return  instance.get(`/search/repositories?q=${query}&page=${page}&per_page=10&sort=stars`);
     }
 }
