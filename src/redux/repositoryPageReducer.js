@@ -1,3 +1,5 @@
+import {ListAPI} from "../API/api";
+
 const LOADED = 'LOADED';
 const initialState = {
     rep: "rep"
@@ -16,5 +18,12 @@ export default repositoryPageReducer;
 const onWakeUp = () => {
     return {
         type: LOADED
+    }
+}
+export const getRepInfo = () => {
+    return (dispatch) => {
+        return {
+            ListAPI
+        }
     }
 }

@@ -2,14 +2,18 @@ import {ListAPI} from "../API/api";
 
 const SET_REPS = 'SET_REPS',
     SET_CURRENT_PAGE = 'SET_CURRENT_PAGE',
-    ON_SEARCH_KEY_UP ='ON_SEARCH_KEY_UP'
+    ON_SEARCH_KEY_UP ='ON_SEARCH_KEY_UP',
+    TOGGLE_LIST_PAGE = 'TOGGLE_LIST_PAGE',
+    SET_CONTRIBUTORS = 'SET_CONTRIBUTORS'
 
 const initialState = {
     list: null,
     items: [],
+    contributors: [],
     currentPage: 1,
     searchValue: '',
-    
+    isListPageActive: true,
+    isRepositoryPageActive: false
 };
 const listPageReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -32,11 +36,24 @@ const listPageReducer = (state = initialState, action) => {
                 searchValue: action.searchValue
             }
         }
+        case TOGGLE_LIST_PAGE: {
+            return {
+                ...state,
+                isListPageActive: action.value
+            }
+        }
+        case SET_CONTRIBUTORS: {
+            return {
+                ...state,
+                contributors: [...action.contributors]
+            }
+        }
         default:
             return state;
 
     }
 }
+export default listPageReducer;
 
 export const setReps = (items) => {
     return {
@@ -56,14 +73,32 @@ export const onSearchKeyUp = (searchValue) => {
         searchValue
     }
 }
-
-export default listPageReducer;
+export const toggleListPage = (value) => {
+    return {
+        type: TOGGLE_LIST_PAGE,
+        value
+    }
+}
+export const setContributors = (contributors) => {
+    return {
+        type: SET_CONTRIBUTORS,
+        contributors
+    }
+}
 
 export const getRep = (page) => {
     return (dispatch) => {
             ListAPI.getList(page).then(response => {
                 dispatch(setReps(response.data));
             })
+
+    }
+}
+export const getContributors = (login, repository) => {
+    return (dispatch) => {
+        ListAPI.getContributorsList(login, repository).then(response => {
+            dispatch(setContributors(response.data));
+        })
 
     }
 }

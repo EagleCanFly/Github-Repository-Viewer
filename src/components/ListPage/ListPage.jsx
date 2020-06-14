@@ -28,9 +28,9 @@ const ListPage = (props) => {
                 day: 'numeric'
             });
 
-            const urlPieces = rep.html_url.split('/');
-            const nickName = urlPieces[3];
-
+           // const urlPieces = rep.html_url.split('/');
+          //  const nickName = urlPieces[3];
+           // to={'/repository/' + rep.id}
             return <div key={rep.id} className={s.repository}>
                 <NavLink className={s.link} to={'/repository/' + rep.id}>{rep.name}</NavLink>
                 <span className={s.stars}>{rep.stargazers_count} stars</span>
@@ -38,7 +38,7 @@ const ListPage = (props) => {
                 <span className={s.right_box}>
 
                     <span className={s.commit}>Last update: {date}</span> <br/>
-                    <a className={s.github} href={rep.html_url} target="_blank">Github</a>
+                    <a className={s.github} href={rep.html_url} target="_blank"  rel="noopener noreferrer">Github</a>
                 </span>
             </div>
 
@@ -46,7 +46,7 @@ const ListPage = (props) => {
 
         <div> {pages.map((page, i) => <span key={i} className={props.currentPage === page ? s.current_number : s.number}
                                             onClick={() => {
-                                                props.onPageChange(page)
+                                                props.onPageChange(page);
                                             }}>{page}</span>)}</div>
     </div>)
 

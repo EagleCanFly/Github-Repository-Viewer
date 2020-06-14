@@ -1,6 +1,12 @@
-
+@font-face {
+    font-family: Poppins;
+    src: url("fonts/Poppins-Regular.ttf");
+    font-weight: 400;
+}
 body {
     color: #fff;
+    font-family: Poppins;
+
 }
 
 body::before {

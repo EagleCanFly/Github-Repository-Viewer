@@ -12,6 +12,8 @@
     display: inline-block;
     padding-bottom: 10px;
     cursor: pointer;
+    color: #fff;
+    text-transform: uppercase;
 }
 .label:hover {
    text-decoration: underline;
