@@ -3,7 +3,6 @@ import s from './App.module.css';
 import {BrowserRouter} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
-import MainContainer from "./components/Main/MainContainer";
 
 function App() {
 
@@ -11,7 +10,7 @@ function App() {
         <BrowserRouter>
             <div className={s.container}>
                 <Header/>
-                <MainContainer/>
+                <Main/>
             </div>
         </BrowserRouter>
     );

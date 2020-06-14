@@ -11,7 +11,6 @@ class RepositoryPageContainer extends React.Component {
         let currentRep = this.props.items.filter(rep => rep.id == this.props.match.params.id);
         let login = currentRep.map(rep => rep.owner.login);
         let name = currentRep.map(rep => rep.name);
-        debugger
        this.props.getContributors(...login, ...name);
     }
 

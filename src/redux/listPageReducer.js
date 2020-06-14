@@ -4,12 +4,14 @@ const SET_REPS = 'SET_REPS',
     SET_CURRENT_PAGE = 'SET_CURRENT_PAGE',
     ON_SEARCH_KEY_UP ='ON_SEARCH_KEY_UP',
     TOGGLE_LIST_PAGE = 'TOGGLE_LIST_PAGE',
-    SET_CONTRIBUTORS = 'SET_CONTRIBUTORS'
+    SET_CONTRIBUTORS = 'SET_CONTRIBUTORS',
+    SET_TOP_TEN = 'SET_TOP_TEN'
 
 const initialState = {
     list: null,
     items: [],
     contributors: [],
+    topTen: [],
     currentPage: 1,
     searchValue: '',
     isListPageActive: true,
@@ -48,6 +50,12 @@ const listPageReducer = (state = initialState, action) => {
                 contributors: [...action.contributors]
             }
         }
+        // case SET_TOP_TEN: {
+        //     return {
+        //         ...state,
+        //         topTen: [...action.items]
+        //     }
+        // }
         default:
             return state;
 
@@ -55,6 +63,7 @@ const listPageReducer = (state = initialState, action) => {
 }
 export default listPageReducer;
 
+// action creators
 export const setReps = (items) => {
     return {
         type: SET_REPS,
@@ -85,10 +94,17 @@ export const setContributors = (contributors) => {
         contributors
     }
 }
+// export const setTopTen = (items) => {
+//     return {
+//         type: SET_TOP_TEN,
+//         items
+//     }
+// }
 
-export const getRep = (page) => {
+// thunks
+export const getRep = (page, query) => {
     return (dispatch) => {
-            ListAPI.getList(page).then(response => {
+            ListAPI.getList(page,query).then(response => {
                 dispatch(setReps(response.data));
             })
 
@@ -114,6 +130,14 @@ export const onPageChange = (page) => {
 export const search = (page,query) => {
     return (dispatch) => {
         ListAPI.getList(1, query).then(response => {
+            dispatch(setReps(response.data));
+        })
+
+    }
+}
+export const getTopTen = () => {
+    return (dispatch) => {
+        ListAPI.getTopTen().then(response => {
             dispatch(setReps(response.data));
         })
 
