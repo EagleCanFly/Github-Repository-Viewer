@@ -7,29 +7,31 @@ const SET_REPS = 'SET_REPS',
     SET_CONTRIBUTORS = 'SET_CONTRIBUTORS',
     SET_TOP_TEN = 'SET_TOP_TEN'
 
-// const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.getItem('state')) : {
-//     list: null,
-//     items: [],
-//     contributors: [],
-//     topTen: [],
-//     currentPage: 1,
-//     searchValue: '',
-//     isListPageActive: true,
-//     isRepositoryPageActive: false
-// };
-const initialState = {
+const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.getItem('state')) : {
     list: null,
     items: [],
     contributors: [],
     topTen: [],
     currentPage: 1,
     searchValue: '',
+    lastSearchValue: '',
     isListPageActive: true,
     isRepositoryPageActive: false
 };
+// const initialState = {
+//     list: null,
+//     items: [],
+//     contributors: [],
+//     topTen: [],
+//     currentPage: 1,
+//     searchValue: '',
+//     lastSearchValue: '',
+//     isListPageActive: true,
+//     isRepositoryPageActive: false
+// };
 
 const listPageReducer = (state = initialState, action) => {
-    // localStorage.setItem('state',JSON.stringify(state));
+    localStorage.setItem('state',JSON.stringify(state));
     switch (action.type) {
         case SET_REPS: {
             return {
@@ -41,13 +43,15 @@ const listPageReducer = (state = initialState, action) => {
         case SET_CURRENT_PAGE: {
             return {
                 ...state,
-                currentPage: action.currentPage
+                currentPage: action.currentPage,
+                lastSearchValue: action.lastSearchValue
             }
         }
         case ON_SEARCH_KEY_UP: {
             return {
                 ...state,
-                searchValue: action.searchValue
+                searchValue: action.searchValue,
+                lastSearchValue: action.searchValue
             }
         }
         case TOGGLE_LIST_PAGE: {
@@ -76,10 +80,12 @@ export const setReps = (items) => {
         items
     }
 }
-export const setCurrentPage = (currentPage) => {
+export const setCurrentPage = (currentPage,lastSearchValue) => {
     return {
         type: SET_CURRENT_PAGE,
-        currentPage
+        currentPage,
+        lastSearchValue
+
     }
 }
 export const onSearchKeyUp = (searchValue) => {
@@ -124,11 +130,11 @@ export const getContributors = (login, repository) => {
 
     }
 }
-export const onPageChange = (page) => {
+export const onPageChange = (page,  lastSearchValue) => {
     debugger
     return (dispatch) => {
-        ListAPI.getList(page).then(response => {
-            dispatch(setCurrentPage(page));
+        ListAPI.getList(page, lastSearchValue).then(response => {
+            dispatch(setCurrentPage(page, lastSearchValue));
             dispatch(setReps(response.data));
         })
 
@@ -138,6 +144,7 @@ export const search = (page,query) => {
     return (dispatch) => {
         ListAPI.getList(1, query).then(response => {
             dispatch(setReps(response.data));
+            dispatch(setCurrentPage(1,query)); // всё ломает эта строчка
         })
 
     }

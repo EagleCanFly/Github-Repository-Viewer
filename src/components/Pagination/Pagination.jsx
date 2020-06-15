@@ -18,7 +18,7 @@ const Pagination = (props) => {
     })
     return  <div> {pages.map((page, i) => <span key={i} className={props.currentPage === page ? s.current_number : s.number}
                                                 onClick={() => {
-                                                    props.onPageChange(page);
+                                                    props.onPageChange(page, props.lastSearchValue);
                                                 }}>{page}</span>)}</div>
 }
 export default Pagination;

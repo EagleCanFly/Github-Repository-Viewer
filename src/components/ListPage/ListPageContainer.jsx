@@ -6,6 +6,8 @@ import {getRep, getTopTen, onPageChange, toggleListPage} from "../../redux/listP
 
 class ListPageContainer extends React.Component {
     componentDidMount() {
+        // this.props.lastSearchValue = this.props.searchValue;
+
         if (this.props.searchValue !== '') {
             this.props.getRep(this.props.currentPage, this.props.searchValue);
         } else if (this.props.list.length === 0) {
@@ -13,8 +15,8 @@ class ListPageContainer extends React.Component {
         }
     }
 
-    onPageChange = (page) => {
-        this.props.onPageChange(page);
+    onPageChange = (page, lastSearchValue) => {
+        this.props.onPageChange(page, lastSearchValue);
     }
 
     render() {
@@ -25,7 +27,9 @@ class ListPageContainer extends React.Component {
                           currentPage={this.props.currentPage}
                           onPageChange={this.props.onPageChange}
                           toggleListPage={this.props.toggleListPage}
-                          searchValue={this.props.searchValue}/>
+                          searchValue={this.props.searchValue}
+                          lastSearchValue={this.props.lastSearchValue}
+                          />
             )
         }
 
@@ -38,7 +42,8 @@ const mapStateToProps = (state) => {
         totalCount: state.listPage.total_count,
         currentPage: state.listPage.currentPage,
         isListPageActive: state.listPage.isListPageActive,
-        searchValue: state.listPage.searchValue
+        searchValue: state.listPage.searchValue,
+        lastSearchValue: state.listPage.lastSearchValue
     }
 }
 

@@ -28,7 +28,7 @@ const Search = (props) => {
                    onKeyPress={(event) => {
                        if (event.key === "Enter") {
                            // alert('Please, use "Search" button.');
-                           props.search(props.currentPage, props.searchValue);
+                           props.search(props.currentPage, props.lastSearchValue);
                        }
                    }}/>
         </div>

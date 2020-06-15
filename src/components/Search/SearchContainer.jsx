@@ -16,6 +16,7 @@ class SearchContainerContainer extends React.Component {
                     search={this.props.search}
                     currentPage={this.props.currentPage}
                     searchValue={this.props.searchValue}
+                    lastSearchValue={this.props.lastSearchValue}
            />
         )
 
@@ -25,7 +26,8 @@ class SearchContainerContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         currentPage: state.listPage.currentPage,
-        searchValue: state.listPage.searchValue
+        searchValue: state.listPage.searchValue,
+        lastSearchValue: state.listPage.lastSearchValue
     }
 }
 
