@@ -1,6 +1,7 @@
 import s from "./ListPage.module.css";
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, Route} from "react-router-dom";
+import Pagination from "../Pagination/Pagination";
 
 const ListPage = (props) => {
 
@@ -28,9 +29,7 @@ const ListPage = (props) => {
                 day: 'numeric'
             });
 
-           // const urlPieces = rep.html_url.split('/');
-          //  const nickName = urlPieces[3];
-           // to={'/repository/' + rep.id}
+
             return <div key={rep.id} className={s.repository}>
                 <NavLink className={s.link} to={'/repository/' + rep.id}>{rep.name}</NavLink>
                 <span className={s.stars}>{rep.stargazers_count} stars</span>
@@ -38,11 +37,15 @@ const ListPage = (props) => {
                 <span className={s.right_box}>
 
                     <span className={s.commit}>Last update: {date}</span> <br/>
-                    <a className={s.github} href={rep.html_url} target="_blank"  rel="noopener noreferrer">Github</a>
+                    <a className={s.github} href={rep.html_url} target="_blank" rel="noopener noreferrer">Github</a>
                 </span>
             </div>
 
         })}
+        {/*<Route path='/list' render={() => <Pagination list={props.list}*/}
+        {/*                                              totalCount={props.totalCount}*/}
+        {/*                                              currentPage={props.currentPage}*/}
+        {/*                                              onPageChange={props.onPageChange}/>} />*/}
 
         <div> {pages.map((page, i) => <span key={i} className={props.currentPage === page ? s.current_number : s.number}
                                             onClick={() => {

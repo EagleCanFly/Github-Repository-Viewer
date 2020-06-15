@@ -18,13 +18,16 @@ class ListPageContainer extends React.Component {
     }
 
     render() {
-        if (this.props.isListPageActive) {return (
-            <ListPage list={this.props.list}
-                      totalCount={this.props.totalCount}
-                      currentPage={this.props.currentPage}
-                      onPageChange={this.props.onPageChange}
-                      toggleListPage={this.props.toggleListPage}/>
-        )}
+        if (this.props.isListPageActive) {
+            return (
+                <ListPage list={this.props.list}
+                          totalCount={this.props.totalCount}
+                          currentPage={this.props.currentPage}
+                          onPageChange={this.props.onPageChange}
+                          toggleListPage={this.props.toggleListPage}
+                          searchValue={this.props.searchValue}/>
+            )
+        }
 
     }
 }
@@ -40,4 +43,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {getRep, onPageChange, toggleListPage,getTopTen})(ListPageContainer)
+export default connect(mapStateToProps, {getRep, onPageChange, toggleListPage, getTopTen})(ListPageContainer)

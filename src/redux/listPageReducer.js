@@ -7,6 +7,16 @@ const SET_REPS = 'SET_REPS',
     SET_CONTRIBUTORS = 'SET_CONTRIBUTORS',
     SET_TOP_TEN = 'SET_TOP_TEN'
 
+// const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.getItem('state')) : {
+//     list: null,
+//     items: [],
+//     contributors: [],
+//     topTen: [],
+//     currentPage: 1,
+//     searchValue: '',
+//     isListPageActive: true,
+//     isRepositoryPageActive: false
+// };
 const initialState = {
     list: null,
     items: [],
@@ -17,7 +27,9 @@ const initialState = {
     isListPageActive: true,
     isRepositoryPageActive: false
 };
+
 const listPageReducer = (state = initialState, action) => {
+    // localStorage.setItem('state',JSON.stringify(state));
     switch (action.type) {
         case SET_REPS: {
             return {
@@ -50,12 +62,6 @@ const listPageReducer = (state = initialState, action) => {
                 contributors: [...action.contributors]
             }
         }
-        // case SET_TOP_TEN: {
-        //     return {
-        //         ...state,
-        //         topTen: [...action.items]
-        //     }
-        // }
         default:
             return state;
 
@@ -119,9 +125,10 @@ export const getContributors = (login, repository) => {
     }
 }
 export const onPageChange = (page) => {
+    debugger
     return (dispatch) => {
         ListAPI.getList(page).then(response => {
-            dispatch(setCurrentPage(page))
+            dispatch(setCurrentPage(page));
             dispatch(setReps(response.data));
         })
 
