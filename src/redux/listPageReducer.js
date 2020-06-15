@@ -4,8 +4,7 @@ const SET_REPS = 'SET_REPS',
     SET_CURRENT_PAGE = 'SET_CURRENT_PAGE',
     ON_SEARCH_KEY_UP ='ON_SEARCH_KEY_UP',
     TOGGLE_LIST_PAGE = 'TOGGLE_LIST_PAGE',
-    SET_CONTRIBUTORS = 'SET_CONTRIBUTORS',
-    SET_TOP_TEN = 'SET_TOP_TEN'
+    SET_CONTRIBUTORS = 'SET_CONTRIBUTORS'
 
 const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.getItem('state')) : {
     list: null,
@@ -14,21 +13,10 @@ const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.ge
     topTen: [],
     currentPage: 1,
     searchValue: '',
-    lastSearchValue: '',
+    lastSearchValue: 'stars:>=10000',
     isListPageActive: true,
     isRepositoryPageActive: false
 };
-// const initialState = {
-//     list: null,
-//     items: [],
-//     contributors: [],
-//     topTen: [],
-//     currentPage: 1,
-//     searchValue: '',
-//     lastSearchValue: '',
-//     isListPageActive: true,
-//     isRepositoryPageActive: false
-// };
 
 const listPageReducer = (state = initialState, action) => {
     localStorage.setItem('state',JSON.stringify(state));
@@ -106,12 +94,6 @@ export const setContributors = (contributors) => {
         contributors
     }
 }
-// export const setTopTen = (items) => {
-//     return {
-//         type: SET_TOP_TEN,
-//         items
-//     }
-// }
 
 // thunks
 export const getRep = (page, query) => {
@@ -143,8 +125,12 @@ export const onPageChange = (page,  lastSearchValue) => {
 export const search = (page,query) => {
     return (dispatch) => {
         ListAPI.getList(1, query).then(response => {
+            if (response.data.total_count === 0) {
+                alert('No matches were found');
+                return;
+            }
             dispatch(setReps(response.data));
-            dispatch(setCurrentPage(1,query)); // всё ломает эта строчка
+            dispatch(setCurrentPage(1,query));
         })
 
     }

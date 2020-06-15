@@ -5,21 +5,6 @@ import Pagination from "../Pagination/Pagination";
 
 const ListPage = (props) => {
 
-    // const totalCount = props.totalCount;
-    // let pages = [];
-    //
-    // let current = props.currentPage;
-    //
-    // if (current < 2) {
-    //
-    //     pages = [current, current + 1, current + 2];
-    // } else {
-    //     pages = [current - 2, current - 1, current, current + 1, current + 2];
-    // }
-    // pages = pages.filter(num => {
-    //     return (!num == 0 || !num < 0 || !num == -1)
-    // })
-
     return (<div className={s.list}>
 
         {props.list.map(rep => {
@@ -42,16 +27,12 @@ const ListPage = (props) => {
             </div>
 
         })}
-        <Route path='/list' render={() => <Pagination list={props.list}
-                                                      totalCount={props.totalCount}
-                                                      currentPage={props.currentPage}
-                                                      onPageChange={props.onPageChange}
-                                                      lastSearchValue={props.lastSearchValue}/>} />
+        <Route path='/' render={() => <Pagination list={props.list}
+                                                  totalCount={props.totalCount}
+                                                  currentPage={props.currentPage}
+                                                  onPageChange={props.onPageChange}
+                                                  lastSearchValue={props.lastSearchValue}/>}/>
 
-        {/*<div> {pages.map((page, i) => <span key={i} className={props.currentPage === page ? s.current_number : s.number}*/}
-        {/*                                    onClick={() => {*/}
-        {/*                                        props.onPageChange(page);*/}
-        {/*                                    }}>{page}</span>)}</div>*/}
     </div>)
 
 };

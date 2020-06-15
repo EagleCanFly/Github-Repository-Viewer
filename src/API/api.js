@@ -12,6 +12,6 @@ export const ListAPI = {
         return instance.get(`/repos/${login}/${repository}/contributors`)
     },
     getTopTen() {
-        return instance.get('search/repositories?q=stars:>=10000&page=1&per_page=10&sort=stars')
+        return instance.get(`search/repositories?q=stars:>=10000&page=1&per_page=10&sort=stars`)
     }
 }

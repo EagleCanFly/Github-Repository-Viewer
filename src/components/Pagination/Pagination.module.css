@@ -1,0 +1,24 @@
+.pages_row {
+    margin: 20px auto 0 auto;
+}
+.number {
+    padding: 10px;
+    margin: 10px 5px;
+}
+
+.number:hover {
+    border-top: 1px solid #fff;
+    cursor: pointer;
+    background: rgba(256, 256, 256, 0.1);
+}
+
+.current_number {
+    padding: 10px;
+    margin: 0 5px;
+    border-top: 1px solid #fff;
+    cursor: pointer;
+    background: rgba(0, 139, 139, 0.5);
+}
+.disabled {
+    pointer-events: none;
+}

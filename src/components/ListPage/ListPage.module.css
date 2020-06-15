@@ -9,12 +9,7 @@
     color: #fff;
 }
 
-.repository a:hover {
-
-}
-
 .stars {
-    /*margin-right: 20px;*/
     color: goldenrod;
     flex: 1;
     text-align: right;
@@ -26,28 +21,7 @@
     margin-bottom: 20px;
 }
 
-.number {
-    padding: 10px;
-    margin: 0 5px;
-}
-
-.number:hover {
-    border-top: 1px solid #fff;
-    cursor: pointer;
-    background: rgba(256, 256, 256, 0.1);
-}
-
-.current_number {
-    padding: 10px;
-    margin: 0 5px;
-    border-top: 1px solid #fff;
-    cursor: pointer;
-    background: rgba(0, 139, 139, 0.5);
-}
-
 .right_box {
-    /*display: flex;*/
-    /*flex-direction: column;*/
     flex: 1;
     text-align: right;
 }
@@ -62,10 +36,11 @@
     background-color: rgba(0, 139, 139, 0.5);;
     border-radius: 2px;
 }
+
 .github {
     text-decoration: none;
-    /*cursor: pointer !important;*/
 }
+
 .github a {
-  text-decoration: underline;
+    text-decoration: underline;
 }

@@ -6,7 +6,7 @@ const RepositoryPage = (props) => {
 
     let rep = props.items.filter(rep => rep.id == props.params.id);
     return <div key={rep.id}>
-        <NavLink to='/list' className={s.return} >Return</NavLink>
+        <NavLink to='/' className={s.return} >Return</NavLink>
     <div>Repository Name: {rep.map(rep => <span>{rep.name}</span>)}</div>
     <div>Stars: {rep.map(rep => <span>{rep.stargazers_count}</span>)}</div>
     <div>Last commit: {rep.map(rep => <span>{rep.pushed_at}</span>)}</div>
