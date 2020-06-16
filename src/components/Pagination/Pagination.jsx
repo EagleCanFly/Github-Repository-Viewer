@@ -4,7 +4,7 @@ import React from "react";
 const Pagination = (props) => {
     const totalPages = Math.ceil(props.totalCount / 10);
 
-    const portionSize = 10;
+    const portionSize = 8;
 
     let currentPortion = props.currentPortion;
 
@@ -25,14 +25,14 @@ const Pagination = (props) => {
     pages = pages.filter(page => page >= leftBorder && page <= rightBorder);
 
     return <div className={s.pages_row}> {currentPortion > 1
-        ? <span className={s.navigation} onClick={() => {props.setCurrentPortion(currentPortion - 1); props.refresh();}}>Back</span>
-        : <span className={s.disabled}>Prev</span>}
+        ? <span className={s.navigation} onClick={() => {props.setCurrentPortion(currentPortion - 1); props.refresh();}}>🡸</span>
+        : <span className={s.disabled}>🡸</span>}
         {pages.map((page, i) => <span key={i}
                                       className={props.currentPage === page ? s.current_number : s.number}
                                       onClick={() => {
                                           props.onPageChange(page, props.lastSearchValue);
                                       }}>{page}</span>)} {currentPortion < totalPortions
-            ? <span className={s.navigation} onClick={() => {props.setCurrentPortion(currentPortion + 1); props.refresh()}}>Next</span>
-            : <span className={s.disabled}>Next</span>}</div>
+            ? <span className={s.navigation} onClick={() => {props.setCurrentPortion(currentPortion + 1); props.refresh()}}>🡺</span>
+            : <span className={s.disabled}>🡺</span>}</div>
 }
 export default Pagination;

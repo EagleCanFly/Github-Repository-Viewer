@@ -50,3 +50,23 @@
 .github img:hover {
     outline: 1px solid darkcyan;
 }
+@media (max-width: 760px) {
+    .right_box {
+        flex: 2;
+    }
+    .stars {
+        flex: 1;
+    }
+    .repository {
+        flex: 2;
+    }
+}
+@media (max-width: 540px) {
+.repository {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #eaeaea;
+}
+}

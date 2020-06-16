@@ -2,8 +2,10 @@
     margin: 20px auto 0 auto;
 }
 .number {
-    padding: 10px;
-    margin: 10px 1px;
+    padding: 10px 10px;
+    /*margin: 0px 5px;*/
+
+    max-width: 20%;
 }
 
 .number:hover {
@@ -13,8 +15,8 @@
 }
 
 .current_number {
-    padding: 10px;
-    margin: 0 5px;
+    padding: 10px 10px;
+    /*margin: 0 5px;*/
     border-top: 1px solid #fff;
     cursor: pointer;
     background: rgba(0, 139, 139, 0.5);
@@ -29,4 +31,15 @@
 }
 .navigation:hover {
     color: rgba(0,139,139,0.8);
+}
+@media (max-width: 540px) {
+    .number {
+        font-size: 14px;
+    }
+}
+@media (max-width: 400px) {
+    .number {
+        font-size: 12px;
+        padding: 0 5px;
+    }
 }
