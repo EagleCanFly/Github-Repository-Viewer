@@ -7,7 +7,7 @@ import {
     onPageChange,
     refresh,
     setCurrentPortion,
-    setReps, toggleIsLoading,
+    toggleIsLoading,
     toggleListPage
 } from "../../redux/listPageReducer";
 
@@ -26,7 +26,6 @@ class ListPageContainer extends React.Component {
     }
 
     render() {
-        debugger
         if (this.props.isListPageActive) {
             return (
                 <ListPage list={this.props.list}
