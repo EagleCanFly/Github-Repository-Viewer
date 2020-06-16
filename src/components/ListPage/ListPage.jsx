@@ -3,10 +3,11 @@ import React from "react";
 import {NavLink, Route} from "react-router-dom";
 import Pagination from "../Pagination/Pagination";
 import github from "./../../images/github.png"
+import Fetching from "../Fetching/Fetching";
 
 const ListPage = (props) => {
 
-    return (<div className={s.list}>
+    return props.isLoading ? <Fetching/> : (<div className={s.list}>
 
         {props.list.map(rep => {
             const date = new Date(rep.pushed_at).toLocaleString('en', {
@@ -17,7 +18,7 @@ const ListPage = (props) => {
 
 
             return <div key={rep.id} className={s.repository}>
-                <NavLink className={s.link} to={'/repository/' + rep.id}>{rep.name}</NavLink>
+                <NavLink className={s.link} to={'/repository/' + rep.id}>★ {rep.name}</NavLink>
                 <span className={s.stars}>{rep.stargazers_count} stars</span>
 
                 <span className={s.right_box}>

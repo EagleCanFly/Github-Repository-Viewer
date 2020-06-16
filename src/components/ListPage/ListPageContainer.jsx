@@ -7,7 +7,7 @@ import {
     onPageChange,
     refresh,
     setCurrentPortion,
-    setReps,
+    setReps, toggleIsLoading,
     toggleListPage
 } from "../../redux/listPageReducer";
 
@@ -26,6 +26,7 @@ class ListPageContainer extends React.Component {
     }
 
     render() {
+        debugger
         if (this.props.isListPageActive) {
             return (
                 <ListPage list={this.props.list}
@@ -38,6 +39,8 @@ class ListPageContainer extends React.Component {
                           currentPortion={this.props.currentPortion}
                           setCurrentPortion={this.props.setCurrentPortion}
                           refresh={this.props.refresh}
+                          isLoading={this.props.isLoading}
+                          toggleIsLoading={this.props.toggleIsLoading}
                 />
             )
         }
@@ -53,9 +56,17 @@ const mapStateToProps = (state) => {
         isListPageActive: state.listPage.isListPageActive,
         searchValue: state.listPage.searchValue,
         lastSearchValue: state.listPage.lastSearchValue,
-        currentPortion: state.listPage.currentPortion
+        currentPortion: state.listPage.currentPortion,
+        isLoading: state.listPage.isLoading
     }
 }
 
 
-export default connect(mapStateToProps, {getRep, onPageChange, toggleListPage, getTopTen,setCurrentPortion, refresh})(ListPageContainer)
+export default connect(mapStateToProps, {
+    getRep,
+    onPageChange,
+    toggleListPage,
+    getTopTen,
+    setCurrentPortion,
+    refresh,
+    toggleIsLoading})(ListPageContainer)

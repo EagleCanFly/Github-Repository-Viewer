@@ -6,19 +6,19 @@ const SET_REPS = 'SET_REPS',
     TOGGLE_LIST_PAGE = 'TOGGLE_LIST_PAGE',
     SET_CONTRIBUTORS = 'SET_CONTRIBUTORS',
     SET_CURRENT_PORTION = 'SET_CURRENT_PORTION',
-    REFRESH = 'REFRESH'
+    REFRESH = 'REFRESH',
+    TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING'
 
 const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.getItem('state')) : {
     list: null,
     items: [],
     contributors: [],
-    topTen: [],
     currentPage: 1,
     currentPortion: 1,
     searchValue: '',
     lastSearchValue: 'stars:>=10000',
     isListPageActive: true,
-    isRepositoryPageActive: false
+    isLoading: false
 };
 
 const listPageReducer = (state = initialState, action) => {
@@ -67,6 +67,12 @@ const listPageReducer = (state = initialState, action) => {
         case REFRESH: {
             return {
                 ...state
+            }
+        }
+        case TOGGLE_IS_LOADING: {
+            return {
+                ...state,
+                isLoading: action.value
             }
         }
         default:
@@ -120,6 +126,12 @@ export const refresh = () => {
         type: REFRESH
     }
 }
+export const toggleIsLoading = (value) => {
+    return {
+        type: TOGGLE_IS_LOADING,
+        value
+    }
+}
 
 // thunks
 export const getRep = (page, query) => {
@@ -142,8 +154,9 @@ export const onPageChange = (page,  lastSearchValue) => {
 
     return (dispatch) => {
         dispatch(setCurrentPage(page, lastSearchValue));
+        dispatch(toggleIsLoading(true));
         ListAPI.getList(page, lastSearchValue).then(response => {
-
+            dispatch(toggleIsLoading(false));
             dispatch(setReps(response.data));
             dispatch(refresh());
         })
@@ -152,9 +165,11 @@ export const onPageChange = (page,  lastSearchValue) => {
 }
 export const search = (page,query) => {
     return (dispatch) => {
+        dispatch(toggleIsLoading(true));
         dispatch(setCurrentPage(1,query));
         dispatch(setCurrentPortion(1));
         ListAPI.getList(1, query).then(response => {
+            dispatch(toggleIsLoading(false));
             if (response.data.total_count === 0) {
                 alert('No matches were found');
                 return;
@@ -168,7 +183,9 @@ export const search = (page,query) => {
 }
 export const getTopTen = () => {
     return (dispatch) => {
+        dispatch(toggleIsLoading(true));
         ListAPI.getTopTen().then(response => {
+            dispatch(toggleIsLoading(false));
             dispatch(setReps(response.data));
         })
 
