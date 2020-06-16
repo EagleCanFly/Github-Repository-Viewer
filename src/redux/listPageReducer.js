@@ -5,7 +5,8 @@ const SET_REPS = 'SET_REPS',
     ON_SEARCH_KEY_UP ='ON_SEARCH_KEY_UP',
     TOGGLE_LIST_PAGE = 'TOGGLE_LIST_PAGE',
     SET_CONTRIBUTORS = 'SET_CONTRIBUTORS',
-    SET_CURRENT_PORTION = 'SET_CURRENT_PORTION'
+    SET_CURRENT_PORTION = 'SET_CURRENT_PORTION',
+    REFRESH = 'REFRESH'
 
 const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.getItem('state')) : {
     list: null,
@@ -63,6 +64,11 @@ const listPageReducer = (state = initialState, action) => {
 
             }
         }
+        case REFRESH: {
+            return {
+                ...state
+            }
+        }
         default:
             return state;
 
@@ -109,6 +115,11 @@ export const setCurrentPortion = (currentPortion) => {
         currentPortion
     }
 }
+export const refresh = () => {
+    return {
+        type: REFRESH
+    }
+}
 
 // thunks
 export const getRep = (page, query) => {
@@ -130,11 +141,11 @@ export const getContributors = (login, repository) => {
 export const onPageChange = (page,  lastSearchValue) => {
 
     return (dispatch) => {
-
+        dispatch(setCurrentPage(page, lastSearchValue));
         ListAPI.getList(page, lastSearchValue).then(response => {
 
             dispatch(setReps(response.data));
-            dispatch(setCurrentPage(page, lastSearchValue));
+            dispatch(refresh());
         })
 
     }
@@ -150,7 +161,7 @@ export const search = (page,query) => {
             }
 
             dispatch(setReps(response.data));
-
+            dispatch(refresh());
         })
 
     }

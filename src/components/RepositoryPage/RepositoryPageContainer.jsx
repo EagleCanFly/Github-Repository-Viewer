@@ -1,7 +1,7 @@
 import RepositoryPage from "./RepositoryPage";
 import * as React from "react";
 import {connect} from "react-redux";
-import {getContributors, getRep, onPageChange, setCurrentPage} from "../../redux/listPageReducer";
+import {getContributors, getRep} from "../../redux/listPageReducer";
 import {withRouter} from "react-router-dom";
 
 

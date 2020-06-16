@@ -1,3 +1,12 @@
+.container {
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 0 15px;
+    text-align: left;
+}
+.container div {
+    padding: 5px 0;
+}
 .avatar {
     width: 100px;
     height: 100px;
@@ -6,11 +15,23 @@
 .return {
     display: inline-block;
     padding: 10px 15px;
+    margin: 10px auto 10px auto;
     background: rgba(0,139,139, 0.3);
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
+    border-radius: 2px;
 }
 .return:hover {
     background: rgba(0,139,139, 0.7);
+}
+.label {
+    color: goldenrod;
+}
+.nickname {
+   color: white;
+    font-size: 20px;
+}
+.nickname:hover {
+    text-decoration: none;
 }

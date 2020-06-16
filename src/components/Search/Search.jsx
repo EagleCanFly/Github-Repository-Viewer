@@ -8,7 +8,6 @@ const Search = (props) => {
             <span className={s.label} onClick={() => {
                 if (props.searchValue !== '') {
                     props.search(props.currentPage, props.searchValue);
-                   // props.setReps(props.list);
                 }
             }}>Search</span>
             <input ref={searchArea}
@@ -22,8 +21,9 @@ const Search = (props) => {
 
                    onKeyPress={(event) => {
                        if (event.key === "Enter") {
-                           props.search(props.currentPage, props.lastSearchValue);
-                           //props.setReps(props.list);
+                           if (props.searchValue !== '') {
+                               props.search(props.currentPage, props.lastSearchValue);
+                           }
                        }
                    }}/>
         </div>
