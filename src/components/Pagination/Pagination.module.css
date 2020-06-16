@@ -23,3 +23,10 @@
     pointer-events: none;
     opacity: 0;
 }
+.navigation {
+    cursor: pointer;
+    padding: 0 5px;
+}
+.navigation:hover {
+    color: rgba(0,139,139,0.8);
+}

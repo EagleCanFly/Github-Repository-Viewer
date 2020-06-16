@@ -25,14 +25,14 @@ const Pagination = (props) => {
     pages = pages.filter(page => page >= leftBorder && page <= rightBorder);
 
     return <div className={s.pages_row}> {currentPortion > 1
-        ? <span onClick={() => {props.setCurrentPortion(currentPortion - 1); props.setReps(props.list) /* обновляю state, чтобы перезаписать local storage*/}}>Back</span>
+        ? <span className={s.navigation} onClick={() => {props.setCurrentPortion(currentPortion - 1); props.refresh();}}>Back</span>
         : <span className={s.disabled}>Prev</span>}
         {pages.map((page, i) => <span key={i}
                                       className={props.currentPage === page ? s.current_number : s.number}
                                       onClick={() => {
                                           props.onPageChange(page, props.lastSearchValue);
                                       }}>{page}</span>)} {currentPortion < totalPortions
-            ? <span onClick={() => {props.setCurrentPortion(currentPortion + 1); props.setReps(props.list)}}>Next</span>
+            ? <span className={s.navigation} onClick={() => {props.setCurrentPortion(currentPortion + 1); props.refresh()}}>Next</span>
             : <span className={s.disabled}>Next</span>}</div>
 }
 export default Pagination;

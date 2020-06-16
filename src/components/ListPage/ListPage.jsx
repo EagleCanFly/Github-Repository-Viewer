@@ -36,7 +36,7 @@ const ListPage = (props) => {
                                                   lastSearchValue={props.lastSearchValue}
                                                   currentPortion={props.currentPortion}
                                                   setCurrentPortion={props.setCurrentPortion}
-                                                  setReps={props.setReps}/>}/>
+                                                  refresh={props.refresh}/>}/>
 
     </div>)
 

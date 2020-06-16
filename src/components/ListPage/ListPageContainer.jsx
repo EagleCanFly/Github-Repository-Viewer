@@ -1,7 +1,15 @@
 import ListPage from "./ListPage";
 import * as React from "react";
 import {connect} from "react-redux";
-import {getRep, getTopTen, onPageChange, setCurrentPortion, setReps, toggleListPage} from "../../redux/listPageReducer";
+import {
+    getRep,
+    getTopTen,
+    onPageChange,
+    refresh,
+    setCurrentPortion,
+    setReps,
+    toggleListPage
+} from "../../redux/listPageReducer";
 
 
 class ListPageContainer extends React.Component {
@@ -29,7 +37,7 @@ class ListPageContainer extends React.Component {
                           lastSearchValue={this.props.lastSearchValue}
                           currentPortion={this.props.currentPortion}
                           setCurrentPortion={this.props.setCurrentPortion}
-                          setReps={this.props.setReps}
+                          refresh={this.props.refresh}
                 />
             )
         }
@@ -50,4 +58,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {getRep, onPageChange, toggleListPage, getTopTen,setCurrentPortion, setReps})(ListPageContainer)
+export default connect(mapStateToProps, {getRep, onPageChange, toggleListPage, getTopTen,setCurrentPortion, refresh})(ListPageContainer)
