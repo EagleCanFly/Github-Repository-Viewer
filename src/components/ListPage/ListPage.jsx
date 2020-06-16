@@ -2,7 +2,7 @@ import s from "./ListPage.module.css";
 import React from "react";
 import {NavLink, Route} from "react-router-dom";
 import Pagination from "../Pagination/Pagination";
-import github from "./../../images/github.png"
+import github from "./../../images/github.png";
 import Fetching from "../Fetching/Fetching";
 
 const ListPage = (props) => {
