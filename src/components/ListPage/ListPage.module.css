@@ -3,6 +3,7 @@
     padding: 10px 0;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 }
 
 .repository a {
@@ -19,6 +20,7 @@
     text-align: right;
     margin-left: 20px;
     margin-bottom: 20px;
+    padding-right: 10px;
 }
 
 .right_box {
@@ -41,6 +43,10 @@
     text-decoration: none;
 }
 
-.github a {
-    text-decoration: underline;
+.github img {
+    width: 30px;
+    height: 30px;
+}
+.github img:hover {
+    outline: 1px solid darkcyan;
 }

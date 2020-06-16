@@ -2,6 +2,7 @@ import s from "./ListPage.module.css";
 import React from "react";
 import {NavLink, Route} from "react-router-dom";
 import Pagination from "../Pagination/Pagination";
+import github from "./../../images/github.png"
 
 const ListPage = (props) => {
 
@@ -21,8 +22,9 @@ const ListPage = (props) => {
 
                 <span className={s.right_box}>
 
-                    <span className={s.commit}>Last update: {date}</span> <br/>
-                    <a className={s.github} href={rep.html_url} target="_blank" rel="noopener noreferrer">Github</a>
+                    <span className={s.commit}>Updated: {date}</span>
+                    <a className={s.github} href={rep.html_url} target="_blank" rel="noopener noreferrer"><img src={github}
+                                                                                                               alt="Github"/></a>
                 </span>
             </div>
 
@@ -31,7 +33,10 @@ const ListPage = (props) => {
                                                   totalCount={props.totalCount}
                                                   currentPage={props.currentPage}
                                                   onPageChange={props.onPageChange}
-                                                  lastSearchValue={props.lastSearchValue}/>}/>
+                                                  lastSearchValue={props.lastSearchValue}
+                                                  currentPortion={props.currentPortion}
+                                                  setCurrentPortion={props.setCurrentPortion}
+                                                  setReps={props.setReps}/>}/>
 
     </div>)
 

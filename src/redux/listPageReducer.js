@@ -4,7 +4,8 @@ const SET_REPS = 'SET_REPS',
     SET_CURRENT_PAGE = 'SET_CURRENT_PAGE',
     ON_SEARCH_KEY_UP ='ON_SEARCH_KEY_UP',
     TOGGLE_LIST_PAGE = 'TOGGLE_LIST_PAGE',
-    SET_CONTRIBUTORS = 'SET_CONTRIBUTORS'
+    SET_CONTRIBUTORS = 'SET_CONTRIBUTORS',
+    SET_CURRENT_PORTION = 'SET_CURRENT_PORTION'
 
 const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.getItem('state')) : {
     list: null,
@@ -12,6 +13,7 @@ const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.ge
     contributors: [],
     topTen: [],
     currentPage: 1,
+    currentPortion: 1,
     searchValue: '',
     lastSearchValue: 'stars:>=10000',
     isListPageActive: true,
@@ -54,6 +56,13 @@ const listPageReducer = (state = initialState, action) => {
                 contributors: [...action.contributors]
             }
         }
+        case SET_CURRENT_PORTION: {
+            return {
+                ...state,
+                currentPortion: action.currentPortion
+
+            }
+        }
         default:
             return state;
 
@@ -94,6 +103,12 @@ export const setContributors = (contributors) => {
         contributors
     }
 }
+export const setCurrentPortion = (currentPortion) => {
+    return {
+        type: SET_CURRENT_PORTION,
+        currentPortion
+    }
+}
 
 // thunks
 export const getRep = (page, query) => {
@@ -113,24 +128,29 @@ export const getContributors = (login, repository) => {
     }
 }
 export const onPageChange = (page,  lastSearchValue) => {
-    debugger
+
     return (dispatch) => {
+
         ListAPI.getList(page, lastSearchValue).then(response => {
-            dispatch(setCurrentPage(page, lastSearchValue));
+
             dispatch(setReps(response.data));
+            dispatch(setCurrentPage(page, lastSearchValue));
         })
 
     }
 }
 export const search = (page,query) => {
     return (dispatch) => {
+        dispatch(setCurrentPage(1,query));
+        dispatch(setCurrentPortion(1));
         ListAPI.getList(1, query).then(response => {
             if (response.data.total_count === 0) {
                 alert('No matches were found');
                 return;
             }
+
             dispatch(setReps(response.data));
-            dispatch(setCurrentPage(1,query));
+
         })
 
     }
