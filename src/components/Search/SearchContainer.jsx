@@ -1,7 +1,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import Search from "./Search";
-import {onSearchKeyUp, search, setReps} from "../../redux/listPageReducer";
+import {getTopTen, onSearchKeyUp, search, setCurrentPage, setReps} from "../../redux/listPageReducer";
 
 
 class SearchContainerContainer extends React.Component {
@@ -19,6 +19,8 @@ class SearchContainerContainer extends React.Component {
                     lastSearchValue={this.props.lastSearchValue}
                     setReps={this.props.setReps}
                     list={this.props.list}
+                    getTopTen={this.props.getTopTen}
+                    setCurrentPage={this.props.setCurrentPage}
            />
         )
 
@@ -35,4 +37,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {onSearchKeyUp, search, setReps})(SearchContainerContainer)
+export default connect(mapStateToProps, {onSearchKeyUp, search, setReps,getTopTen,setCurrentPage})(SearchContainerContainer)

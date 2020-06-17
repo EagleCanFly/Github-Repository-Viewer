@@ -28,7 +28,7 @@ const listPageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.items,
-                searchValue: ''
+               // searchValue: ''
             }
         }
         case SET_CURRENT_PAGE: {
@@ -186,6 +186,8 @@ export const getTopTen = () => {
         dispatch(toggleIsLoading(true));
         ListAPI.getTopTen().then(response => {
             dispatch(toggleIsLoading(false));
+            dispatch(setCurrentPage(1,'stars:>=10000'));
+            dispatch(setCurrentPortion(1));
             dispatch(setReps(response.data));
         })
 

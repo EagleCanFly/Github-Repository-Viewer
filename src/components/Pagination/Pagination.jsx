@@ -30,7 +30,9 @@ const Pagination = (props) => {
         {pages.map((page, i) => <span key={i}
                                       className={props.currentPage === page ? s.current_number : s.number}
                                       onClick={() => {
-                                          props.onPageChange(page, props.lastSearchValue);
+                                          // let lastVal = props.lastSearchValue;
+                                           if ( props.lastSearchValue === '') {  props.lastSearchValue = 'stars:>=10000'}
+                                          props.onPageChange(page,  props.lastSearchValue);
                                       }}>{page}</span>)} {currentPortion < totalPortions
             ? <span className={s.navigation} onClick={() => {props.setCurrentPortion(currentPortion + 1); props.refresh()}}>🡺</span>
             : <span className={s.disabled}>🡺</span>}</div>

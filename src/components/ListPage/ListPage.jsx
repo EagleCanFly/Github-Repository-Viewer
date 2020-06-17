@@ -20,13 +20,13 @@ const ListPage = (props) => {
             return <div key={rep.id} className={s.repository}>
                 <NavLink className={s.link} to={'/repository/' + rep.id}>★ {rep.name}</NavLink>
                 <span className={s.stars}>{rep.stargazers_count} stars</span>
+                <span className={s.commit}>Updated: {date}</span>
+                <a className={s.github} href={rep.html_url} target="_blank" rel="noopener noreferrer"><img src={github}
+                                                                                                           alt="Github"/></a>
+                {/*<span className={s.right_box}>*/}
 
-                <span className={s.right_box}>
-
-                    <span className={s.commit}>Updated: {date}</span>
-                    <a className={s.github} href={rep.html_url} target="_blank" rel="noopener noreferrer"><img src={github}
-                                                                                                               alt="Github"/></a>
-                </span>
+                {/*   */}
+                {/*</span>*/}
             </div>
 
         })}
@@ -36,6 +36,7 @@ const ListPage = (props) => {
                                                   onPageChange={props.onPageChange}
                                                   lastSearchValue={props.lastSearchValue}
                                                   currentPortion={props.currentPortion}
+                                                  setCurrentPage={props.setCurrentPage}
                                                   setCurrentPortion={props.setCurrentPortion}
                                                   refresh={props.refresh}/>}/>
 

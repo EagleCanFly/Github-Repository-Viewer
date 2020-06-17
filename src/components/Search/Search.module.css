@@ -1,0 +1,27 @@
+.search_line {
+    display: flex;
+    justify-content: space-between;
+}
+.input__box {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input {
+    width: 100%;
+    padding: 5px;
+}
+
+.label {
+    display: inline-block;
+    padding-bottom: 10px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.search_icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}

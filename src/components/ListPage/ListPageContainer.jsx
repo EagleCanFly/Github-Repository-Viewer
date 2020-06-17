@@ -5,7 +5,7 @@ import {
     getRep,
     getTopTen,
     onPageChange,
-    refresh,
+    refresh, setCurrentPage,
     setCurrentPortion,
     toggleIsLoading,
     toggleListPage
@@ -37,6 +37,7 @@ class ListPageContainer extends React.Component {
                           lastSearchValue={this.props.lastSearchValue}
                           currentPortion={this.props.currentPortion}
                           setCurrentPortion={this.props.setCurrentPortion}
+                          setCurrentPage={this.props.setCurrentPage}
                           refresh={this.props.refresh}
                           isLoading={this.props.isLoading}
                           toggleIsLoading={this.props.toggleIsLoading}
@@ -67,5 +68,6 @@ export default connect(mapStateToProps, {
     toggleListPage,
     getTopTen,
     setCurrentPortion,
+    setCurrentPage,
     refresh,
     toggleIsLoading})(ListPageContainer)
