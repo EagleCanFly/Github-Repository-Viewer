@@ -16,7 +16,7 @@ const RepositoryPage = (props) => {
     return <div key={rep.id} className={s.container}>
     <NavLink to='/' className={s.return} >Return</NavLink>
 
-    <div><span className={s.label}>Repository name: </span>{rep.map(rep => <span key={rep.id}>{rep.name}</span>)}</div>
+    <div><span className={s.label}>Repository name: </span>{rep.map(rep => <span className={s.repo_name} key={rep.id}>{rep.name}</span>)}</div>
 
     <div><span className={s.label}>Stars: </span>{rep.map(rep => <span key={rep.id}>{rep.stargazers_count}</span>)}</div>
 
