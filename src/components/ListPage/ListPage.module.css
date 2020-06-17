@@ -17,7 +17,7 @@
 }
 
 .commit {
-    min-width: 190px;
+    min-width: 230px;
     margin-left: 10px;
 }
 
@@ -60,7 +60,7 @@
         flex: 2;
     }
 }
-@media (max-width: 540px) {
+@media (max-width: 576px) {
 .repository {
     flex-direction: column;
     justify-content: center;
