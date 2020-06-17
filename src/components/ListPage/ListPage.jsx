@@ -12,7 +12,7 @@ const ListPage = (props) => {
         {props.list.map(rep => {
             const date = new Date(rep.pushed_at).toLocaleString('en', {
                 year: 'numeric',
-                month: 'numeric',
+                month: 'long',
                 day: 'numeric'
             });
 
