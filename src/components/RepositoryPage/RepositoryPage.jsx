@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 const RepositoryPage = (props) => {
 
 
-    let rep = props.items.filter(rep => rep.id == props.params.id);
+    let rep = props.items.filter(rep => rep.id === +props.params.id);
     return <div key={rep.id} className={s.container}>
         <NavLink to='/' className={s.return} >Return</NavLink>
     <div><span className={s.label}>Repository name: </span>{rep.map(rep => <span key={rep.id}>{rep.name}</span>)}</div>

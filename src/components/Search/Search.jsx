@@ -23,7 +23,7 @@ const Search = (props) => {
                                } else {props.getTopTen(); props.setCurrentPage(1); }
                            }
                        }}/>
-                <span><img className={s.search_icon} src={search} alt="S" onClick={() => {
+                <span><img className={s.search_icon} src={search} alt="s" onClick={() => {
                     if (props.searchValue !== '') {
                         props.search(props.currentPage, props.searchValue);
                     } else {props.getTopTen(); props.setCurrentPage(1); }

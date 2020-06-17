@@ -1,15 +1,16 @@
 import s from "./ListPage.module.css";
+import p from "./Pagination.module.css";
 import React from "react";
 import {NavLink, Route} from "react-router-dom";
-import Pagination from "../Pagination/Pagination";
 import github from "./../../images/github.png";
 import Fetching from "../Fetching/Fetching";
+import Pagination from "react-js-pagination";
 
 const ListPage = (props) => {
 
     return props.isLoading ? <Fetching/> : (<div className={s.list}>
 
-        {props.list.map(rep => {
+        {props.items.map(rep => {
             const date = new Date(rep.pushed_at).toLocaleString('en', {
                 year: 'numeric',
                 month: 'long',
@@ -23,22 +24,19 @@ const ListPage = (props) => {
                 <span className={s.commit}>Updated: {date}</span>
                 <a className={s.github} href={rep.html_url} target="_blank" rel="noopener noreferrer"><img src={github}
                                                                                                            alt="Github"/></a>
-                {/*<span className={s.right_box}>*/}
-
-                {/*   */}
-                {/*</span>*/}
             </div>
 
         })}
-        <Route path='/' render={() => <Pagination list={props.list}
-                                                  totalCount={props.totalCount}
-                                                  currentPage={props.currentPage}
-                                                  onPageChange={props.onPageChange}
-                                                  lastSearchValue={props.lastSearchValue}
-                                                  currentPortion={props.currentPortion}
-                                                  setCurrentPage={props.setCurrentPage}
-                                                  setCurrentPortion={props.setCurrentPortion}
-                                                  refresh={props.refresh}/>}/>
+        <Route path='/' render={() => <Pagination
+            activePage={props.currentPage}
+            itemsCountPerPage={10}
+            totalItemsCount={props.totalCount > 100 ? 100 : props.totalCount} // api не отдает более 1000 реп-ев
+            pageRangeDisplayed={5}
+            onChange={props.onPageChange}
+            hideDisabled={true}
+            linkClass={p.number}
+            activeClass={p.current_number}
+            innerClass={p.pages_row}/>}/>
 
     </div>)
 

@@ -8,6 +8,4 @@ import thunk from "redux-thunk";
 
 let store = createStore(reducers, applyMiddleware(thunk));
 
-// window.store = store;
-
 export default store;

@@ -3,21 +3,15 @@ import {ListAPI} from "../API/api";
 const SET_REPS = 'SET_REPS',
     SET_CURRENT_PAGE = 'SET_CURRENT_PAGE',
     ON_SEARCH_KEY_UP ='ON_SEARCH_KEY_UP',
-    TOGGLE_LIST_PAGE = 'TOGGLE_LIST_PAGE',
     SET_CONTRIBUTORS = 'SET_CONTRIBUTORS',
-    SET_CURRENT_PORTION = 'SET_CURRENT_PORTION',
-    REFRESH = 'REFRESH',
     TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING'
 
 const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.getItem('state')) : {
-    list: null,
     items: [],
     contributors: [],
     currentPage: 1,
-    currentPortion: 1,
     searchValue: '',
     lastSearchValue: 'stars:>=10000',
-    isListPageActive: true,
     isLoading: false
 };
 
@@ -27,8 +21,7 @@ const listPageReducer = (state = initialState, action) => {
         case SET_REPS: {
             return {
                 ...state,
-                ...action.items,
-               // searchValue: ''
+                ...action.items
             }
         }
         case SET_CURRENT_PAGE: {
@@ -45,28 +38,10 @@ const listPageReducer = (state = initialState, action) => {
                 lastSearchValue: action.searchValue
             }
         }
-        case TOGGLE_LIST_PAGE: {
-            return {
-                ...state,
-                isListPageActive: action.value
-            }
-        }
         case SET_CONTRIBUTORS: {
             return {
                 ...state,
                 contributors: [...action.contributors]
-            }
-        }
-        case SET_CURRENT_PORTION: {
-            return {
-                ...state,
-                currentPortion: action.currentPortion
-
-            }
-        }
-        case REFRESH: {
-            return {
-                ...state
             }
         }
         case TOGGLE_IS_LOADING: {
@@ -103,27 +78,10 @@ export const onSearchKeyUp = (searchValue) => {
         searchValue
     }
 }
-export const toggleListPage = (value) => {
-    return {
-        type: TOGGLE_LIST_PAGE,
-        value
-    }
-}
 export const setContributors = (contributors) => {
     return {
         type: SET_CONTRIBUTORS,
         contributors
-    }
-}
-export const setCurrentPortion = (currentPortion) => {
-    return {
-        type: SET_CURRENT_PORTION,
-        currentPortion
-    }
-}
-export const refresh = () => {
-    return {
-        type: REFRESH
     }
 }
 export const toggleIsLoading = (value) => {
@@ -158,7 +116,6 @@ export const onPageChange = (page,  lastSearchValue) => {
         ListAPI.getList(page, lastSearchValue).then(response => {
             dispatch(toggleIsLoading(false));
             dispatch(setReps(response.data));
-            dispatch(refresh());
         })
 
     }
@@ -167,16 +124,13 @@ export const search = (page,query) => {
     return (dispatch) => {
         dispatch(toggleIsLoading(true));
         dispatch(setCurrentPage(1,query));
-        dispatch(setCurrentPortion(1));
         ListAPI.getList(1, query).then(response => {
             dispatch(toggleIsLoading(false));
             if (response.data.total_count === 0) {
                 alert('No matches were found');
                 return;
             }
-
             dispatch(setReps(response.data));
-            dispatch(refresh());
         })
 
     }
@@ -187,7 +141,6 @@ export const getTopTen = () => {
         ListAPI.getTopTen().then(response => {
             dispatch(toggleIsLoading(false));
             dispatch(setCurrentPage(1,'stars:>=10000'));
-            dispatch(setCurrentPortion(1));
             dispatch(setReps(response.data));
         })
 

@@ -8,7 +8,7 @@ import {withRouter} from "react-router-dom";
 class RepositoryPageContainer extends React.Component {
 
     componentDidMount() {
-        let currentRep = this.props.items.filter(rep => rep.id == this.props.match.params.id);
+        let currentRep = this.props.items.filter(rep => rep.id === +this.props.match.params.id);
         let login = currentRep.map(rep => rep.owner.login);
         let name = currentRep.map(rep => rep.name);
        this.props.getContributors(...login, ...name);

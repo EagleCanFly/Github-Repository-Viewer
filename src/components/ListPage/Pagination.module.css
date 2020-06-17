@@ -1,11 +1,15 @@
 .pages_row {
     margin: 20px auto 0 auto;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-inline-start: 0;
 }
 .number {
     padding: 10px 10px;
-    /*margin: 0px 5px;*/
-
+    color: white;
     max-width: 20%;
+    text-decoration: none;
 }
 
 .number:hover {
@@ -14,7 +18,7 @@
     background: rgba(256, 256, 256, 0.1);
 }
 
-.current_number {
+.current_number a {
     padding: 10px 10px;
     /*margin: 0 5px;*/
     border-top: 1px solid #fff;
@@ -31,15 +35,4 @@
 }
 .navigation:hover {
     color: rgba(0,139,139,0.8);
-}
-@media (max-width: 540px) {
-    .number {
-        font-size: 14px;
-    }
-}
-@media (max-width: 400px) {
-    .number {
-        font-size: 12px;
-        padding: 0 5px;
-    }
 }

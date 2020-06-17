@@ -6,10 +6,6 @@ import {getTopTen, onSearchKeyUp, search, setCurrentPage, setReps} from "../../r
 
 class SearchContainerContainer extends React.Component {
 
-    componentDidMount() {
-
-    }
-
     render() {
         return (
            <Search  onSearchKeyUp={this.props.onSearchKeyUp}
@@ -18,7 +14,6 @@ class SearchContainerContainer extends React.Component {
                     searchValue={this.props.searchValue}
                     lastSearchValue={this.props.lastSearchValue}
                     setReps={this.props.setReps}
-                    list={this.props.list}
                     getTopTen={this.props.getTopTen}
                     setCurrentPage={this.props.setCurrentPage}
            />
@@ -32,7 +27,6 @@ const mapStateToProps = (state) => {
         currentPage: state.listPage.currentPage,
         searchValue: state.listPage.searchValue,
         lastSearchValue: state.listPage.lastSearchValue,
-        list: state.listPage.items
     }
 }
 
