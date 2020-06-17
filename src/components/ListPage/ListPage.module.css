@@ -49,9 +49,10 @@
 .github img {
     width: 30px;
     height: 30px;
+    box-sizing: border-box;
 }
 .github img:hover {
-    outline: 1px solid darkcyan;
+    border: 1px solid darkcyan;
 }
 @media (max-width: 760px) {
     .right_box {
