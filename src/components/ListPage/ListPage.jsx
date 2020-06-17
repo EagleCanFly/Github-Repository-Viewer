@@ -30,7 +30,7 @@ const ListPage = (props) => {
         <Route path='/' render={() => <Pagination
             activePage={props.currentPage}
             itemsCountPerPage={10}
-            totalItemsCount={props.totalCount > 100 ? 100 : props.totalCount} // api не отдает более 1000 реп-ев
+            totalItemsCount={props.totalCount > 1000 ? 1000 : props.totalCount} // api не отдает более 1000 реп-ев
             pageRangeDisplayed={5}
             onChange={props.onPageChange}
             hideDisabled={true}
