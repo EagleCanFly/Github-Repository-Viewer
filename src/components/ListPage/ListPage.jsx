@@ -7,21 +7,21 @@ import Fetching from "../Fetching/Fetching";
 import Pagination from "react-js-pagination";
 
 const ListPage = (props) => {
-
-    return props.isLoading ? <Fetching/> : (<div className={s.list}>
+    const convertDate = (date) => {
+        return  new Date(date).toLocaleString('en', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+    return props.isLoading ? <Fetching/> : props.isResponseEmpty ? <div>No matches were found</div> : (<div className={s.list}>
 
         {props.items.map(rep => {
-            const date = new Date(rep.pushed_at).toLocaleString('en', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-
 
             return <div key={rep.id} className={s.repository}>
                 <NavLink className={s.link} to={'/repository/' + rep.id}>★ {rep.name}</NavLink>
                 <span className={s.stars}>{rep.stargazers_count} stars</span>
-                <span className={s.commit}>Updated: {date}</span>
+                <span className={s.commit}>Updated: {convertDate(rep.pushed_at)}</span>
                 <a className={s.github} href={rep.html_url} target="_blank" rel="noopener noreferrer"><img src={github}
                                                                                                            alt="Github"/></a>
             </div>

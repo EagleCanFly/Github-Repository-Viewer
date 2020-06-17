@@ -8,7 +8,10 @@
 
 .repository a {
     color: #fff;
-    word-break: break-all;
+    /*word-break: break-all;*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .stars {

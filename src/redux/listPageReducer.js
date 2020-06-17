@@ -5,7 +5,8 @@ const SET_REPS = 'SET_REPS',
     ON_SEARCH_KEY_UP ='ON_SEARCH_KEY_UP',
     SET_CONTRIBUTORS = 'SET_CONTRIBUTORS',
     TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING',
-    RERENDER = 'RERENDER'
+    RERENDER = 'RERENDER',
+    IS_RESPONSE_EMPTY = 'IS_RESPONSE_EMPTY'
 
 const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.getItem('state')) : {
     items: [],
@@ -13,7 +14,8 @@ const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.ge
     currentPage: 1,
     searchValue: '',
     lastSearchValue: 'stars:>=10000',
-    isLoading: false
+    isLoading: false,
+    isResponseEmpty: false
 };
 
 const listPageReducer = (state = initialState, action) => {
@@ -54,6 +56,12 @@ const listPageReducer = (state = initialState, action) => {
         case RERENDER: {
             return {
                 ...state
+            }
+        }
+        case IS_RESPONSE_EMPTY: {
+            return {
+                ...state,
+                isResponseEmpty: action.value
             }
         }
         default:
@@ -101,6 +109,12 @@ export const rerender = () => {
         type: RERENDER
     }
 }
+export const toggleIsResponseEmpty = (value) => {
+    return {
+        type: IS_RESPONSE_EMPTY,
+        value
+    }
+}
 
 // thunks
 export const getRep = (page, query) => {
@@ -139,19 +153,20 @@ export const search = (page,query) => {
         ListAPI.getList(1, query).then(response => {
             dispatch(toggleIsLoading(false));
             if (response.data.total_count === 0) {
-                alert('No matches were found');
-                return;
-            }
+                dispatch(toggleIsResponseEmpty(true));
+            } else dispatch(toggleIsResponseEmpty(false));
+
             dispatch(setReps(response.data));
         })
 
     }
 }
-export const getTopTen = () => {
+export const getTopSorted = (pages) => {
     return (dispatch) => {
         dispatch(toggleIsLoading(true));
-        ListAPI.getTopTen().then(response => {
+        ListAPI.getTopSorted(pages).then(response => {
             dispatch(toggleIsLoading(false));
+            dispatch(toggleIsResponseEmpty(false));
             dispatch(setCurrentPage(1,'stars:>=10000'));
             dispatch(setReps(response.data));
         })

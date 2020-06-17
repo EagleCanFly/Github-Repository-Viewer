@@ -3,7 +3,7 @@ import * as React from "react";
 import {connect} from "react-redux";
 import {
     getRep,
-    getTopTen,
+    getTopSorted,
     onPageChange,
     setCurrentPage,
     toggleIsLoading
@@ -15,7 +15,7 @@ class ListPageContainer extends React.Component {
         if (this.props.searchValue !== '') {
             this.props.getRep(this.props.currentPage, this.props.searchValue);
         } else if (this.props.items.length === 0) {
-            this.props.getTopTen();
+            this.props.getTopSorted(10);
         }
     }
 
@@ -36,6 +36,7 @@ class ListPageContainer extends React.Component {
                           setCurrentPage={this.props.setCurrentPage}
                           isLoading={this.props.isLoading}
                           toggleIsLoading={this.props.toggleIsLoading}
+                          isResponseEmpty={this.props.isResponseEmpty}
                 />
             )
         }
@@ -48,7 +49,8 @@ const mapStateToProps = (state) => {
         currentPage: state.listPage.currentPage,
         searchValue: state.listPage.searchValue,
         lastSearchValue: state.listPage.lastSearchValue,
-        isLoading: state.listPage.isLoading
+        isLoading: state.listPage.isLoading,
+        isResponseEmpty: state.listPage.isResponseEmpty
     }
 }
 
@@ -56,6 +58,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     getRep,
     onPageChange,
-    getTopTen,
+    getTopSorted,
     setCurrentPage,
     toggleIsLoading})(ListPageContainer)
