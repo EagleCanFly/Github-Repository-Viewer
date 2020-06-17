@@ -4,7 +4,8 @@ const SET_REPS = 'SET_REPS',
     SET_CURRENT_PAGE = 'SET_CURRENT_PAGE',
     ON_SEARCH_KEY_UP ='ON_SEARCH_KEY_UP',
     SET_CONTRIBUTORS = 'SET_CONTRIBUTORS',
-    TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING'
+    TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING',
+    RERENDER = 'RERENDER'
 
 const  initialState = localStorage.getItem('state') ? JSON.parse(localStorage.getItem('state')) : {
     items: [],
@@ -50,6 +51,11 @@ const listPageReducer = (state = initialState, action) => {
                 isLoading: action.value
             }
         }
+        case RERENDER: {
+            return {
+                ...state
+            }
+        }
         default:
             return state;
 
@@ -90,6 +96,11 @@ export const toggleIsLoading = (value) => {
         value
     }
 }
+export const rerender = () => {
+    return {
+        type: RERENDER
+    }
+}
 
 // thunks
 export const getRep = (page, query) => {
@@ -116,6 +127,7 @@ export const onPageChange = (page,  lastSearchValue) => {
         ListAPI.getList(page, lastSearchValue).then(response => {
             dispatch(toggleIsLoading(false));
             dispatch(setReps(response.data));
+            dispatch(rerender());
         })
 
     }
