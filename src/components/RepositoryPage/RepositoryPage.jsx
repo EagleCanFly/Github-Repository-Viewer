@@ -11,6 +11,7 @@ const RepositoryPage = (props) => {
             day: 'numeric'
         });
     }
+
     let rep = props.items.filter(rep => rep.id === +props.params.id);
 
     return <div key={rep.id} className={s.container}>
