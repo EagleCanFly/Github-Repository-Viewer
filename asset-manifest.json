@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/github-repository-viewer/static/css/main.fc733940.chunk.css",
-    "main.js": "/github-repository-viewer/static/js/main.c92cee1c.chunk.js",
-    "main.js.map": "/github-repository-viewer/static/js/main.c92cee1c.chunk.js.map",
-    "runtime-main.js": "/github-repository-viewer/static/js/runtime-main.d3633d97.js",
-    "runtime-main.js.map": "/github-repository-viewer/static/js/runtime-main.d3633d97.js.map",
-    "static/js/2.7192f5df.chunk.js": "/github-repository-viewer/static/js/2.7192f5df.chunk.js",
-    "static/js/2.7192f5df.chunk.js.map": "/github-repository-viewer/static/js/2.7192f5df.chunk.js.map",
-    "index.html": "/github-repository-viewer/index.html",
-    "precache-manifest.250a2775ffa9a67f738041dfa3000c21.js": "/github-repository-viewer/precache-manifest.250a2775ffa9a67f738041dfa3000c21.js",
-    "service-worker.js": "/github-repository-viewer/service-worker.js",
-    "static/css/main.fc733940.chunk.css.map": "/github-repository-viewer/static/css/main.fc733940.chunk.css.map",
-    "static/js/2.7192f5df.chunk.js.LICENSE.txt": "/github-repository-viewer/static/js/2.7192f5df.chunk.js.LICENSE.txt",
-    "static/media/App.module.css": "/github-repository-viewer/static/media/background-github.4c1ea5dc.jpg",
-    "static/media/github.png": "/github-repository-viewer/static/media/github.718cad62.png"
+    "main.css": "/Github-Repository-Viewer/static/css/main.e7533bfa.chunk.css",
+    "main.js": "/Github-Repository-Viewer/static/js/main.ce295fba.chunk.js",
+    "main.js.map": "/Github-Repository-Viewer/static/js/main.ce295fba.chunk.js.map",
+    "runtime-main.js": "/Github-Repository-Viewer/static/js/runtime-main.44884cc9.js",
+    "runtime-main.js.map": "/Github-Repository-Viewer/static/js/runtime-main.44884cc9.js.map",
+    "static/js/2.7192f5df.chunk.js": "/Github-Repository-Viewer/static/js/2.7192f5df.chunk.js",
+    "static/js/2.7192f5df.chunk.js.map": "/Github-Repository-Viewer/static/js/2.7192f5df.chunk.js.map",
+    "index.html": "/Github-Repository-Viewer/index.html",
+    "precache-manifest.82fd10c3357b22cbc2b02ff90b95a1e2.js": "/Github-Repository-Viewer/precache-manifest.82fd10c3357b22cbc2b02ff90b95a1e2.js",
+    "service-worker.js": "/Github-Repository-Viewer/service-worker.js",
+    "static/css/main.e7533bfa.chunk.css.map": "/Github-Repository-Viewer/static/css/main.e7533bfa.chunk.css.map",
+    "static/js/2.7192f5df.chunk.js.LICENSE.txt": "/Github-Repository-Viewer/static/js/2.7192f5df.chunk.js.LICENSE.txt",
+    "static/media/App.module.css": "/Github-Repository-Viewer/static/media/background-github.4c1ea5dc.jpg",
+    "static/media/github.png": "/Github-Repository-Viewer/static/media/github.718cad62.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.d3633d97.js",
+    "static/js/runtime-main.44884cc9.js",
     "static/js/2.7192f5df.chunk.js",
-    "static/css/main.fc733940.chunk.css",
-    "static/js/main.c92cee1c.chunk.js"
+    "static/css/main.e7533bfa.chunk.css",
+    "static/js/main.ce295fba.chunk.js"
   ]
 }
